@@ -84,9 +84,12 @@ app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 # Allow the React dev server to call this API directly.
 # Tighten allow_origins before deploying anywhere real.
+from fastapi.middleware.cors import CORSMiddleware
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://localhost:3000"],
+    allow_origins=["*"],  # Allows all origins
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
