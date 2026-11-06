@@ -1,0 +1,16 @@
+# Never bake real secrets into an image
+.env
+
+# Dev/test artifacts
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.db
+*.sqlite3
+server.log
+
+# NOTE: readmission_model.joblib, feature_columns.json, and
+# category_options.json are intentionally NOT excluded here —
+# main.py loads them at container startup, so they must be
+# present in this folder before running `docker build`.
