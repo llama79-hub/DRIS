@@ -8,7 +8,7 @@
 // that requires coordinating cookie settings between frontend and
 // backend, so it's a reasonable next step rather than a day-one need.
 
-export const API_BASE = "http://localhost:8000";
+export const API_BASE = "https://dris-backend-96m9.onrender.com";
 
 const TOKEN_KEY = "readmission_token";
 
