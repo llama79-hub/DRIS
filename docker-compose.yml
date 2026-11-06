@@ -1,0 +1,22 @@
+services:
+  backend:
+    build: ./backend
+    env_file:
+      - ./backend/.env
+    environment:
+      # The frontend is reached through nginx's own origin (port 8080
+      # below), not through this container directly — CORS just needs
+      # to allow that origin for any direct/manual API calls made
+      # from a browser tab pointed at the backend's own port.
+      - ALLOWED_ORIGINS=http://localhost:8080
+    ports:
+      - "8000:8000"   # exposed mainly for debugging with curl / /docs
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+    restart: unless-stopped

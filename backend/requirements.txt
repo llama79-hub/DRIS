@@ -5,8 +5,9 @@ joblib
 pandas
 numpy
 scikit-learn
-xgboost
+xgboost==2.0.3
 wandb
+psycopg2-binary
 
 # auth + database
 sqlalchemy

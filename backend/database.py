@@ -41,7 +41,11 @@ if "channel_binding=require" in DATABASE_URL:
         .replace("?channel_binding=require", "")
     )
 
-engine = create_engine(DATABASE_URL)
+engine = create_engine(
+    DATABASE_URL,
+    pool_pre_ping=True,   # Tests connection before executing queries to prevent SSL drops
+    pool_recycle=300,     # Refreshes idle database connections every 5 minutes
+)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
